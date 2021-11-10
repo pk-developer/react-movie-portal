@@ -1,4 +1,5 @@
-import { useLogin } from "shared/hooks";
+import { React } from "shared/shared-import";
+import { useDebounce, useLogin } from "shared/hooks";
 
 interface SearchBoxProps {
   onSearch: (searchTerm: string) => void;
@@ -6,23 +7,29 @@ interface SearchBoxProps {
 
 const SearchBox = ({ onSearch }: SearchBoxProps) => {
   const { isLogin } = useLogin((state: any) => state);
+  const [searchTerm, setSearchTerm] = React.useState<string>("");
+  const debouncedSearchTerm: string = useDebounce(searchTerm, 500);
+
+  React.useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        onSearch(debouncedSearchTerm);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [debouncedSearchTerm] // Only call effect if debounced search term changes
+  );
+
   return (
-    <form className="d-flex" style={styles.searchFoxWrapper}>
+    <div className="d-flex" style={styles.searchFoxWrapper}>
       <input
         disabled={!isLogin}
         className="form-control me-2"
         type="text"
         placeholder="Search"
-        onChange={(event) => onSearch(event.target.value)}
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <button
-        disabled={!isLogin}
-        className="btn btn-primary"
-        type="button"
-      >
-        Search
-      </button>
-    </form>
+    </div>
   );
 };
 

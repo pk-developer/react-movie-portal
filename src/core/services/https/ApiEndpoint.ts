@@ -6,7 +6,7 @@ export class ApiEndpoint {
   
     public static GET_MOVIES: APIDef = {
       method: "GET",
-      api: () => `api/movies`,
+      api: () => `api`,
     };
   
   

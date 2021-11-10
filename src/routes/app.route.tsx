@@ -10,7 +10,7 @@ const AppRoute = (
     <Route path={SCREENS.LOGIN_SCREEN} element={<LoginComponent />} />
     <Route path={SCREENS.MOVIES} element={<MoviesComponent />} />
     <Route
-      path={`${SCREENS.MOVIE_DETAILS}:/id`}
+      path={`${SCREENS.MOVIE_DETAILS}`}
       element={<MovieDetailsComponent />}
     />
     <Route

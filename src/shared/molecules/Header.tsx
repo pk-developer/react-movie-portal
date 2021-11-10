@@ -36,17 +36,10 @@ const Header = ({ onSearch }: HeaderProps) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="mynavbar">
-          <ul className="navbar-nav me-auto">
-            <li
-              className="nav-item"
-              onClick={() => (isLogin ? logout() : gotoLogin())}
-            >
-              <a className="nav-link" href="javascript:void(0)">
-                {isLogin ? "Logout" : "Login"}
-              </a>
-            </li>
-          </ul>
           <SearchBox onSearch={onSearch} />
+          <button disabled={!isLogin} onClick={() => (isLogin ? logout() : gotoLogin())} className="btn btn-primary" type="button">
+          {isLogin ? "Logout" : "Login"}
+          </button>
         </div>
       </div>
     </nav>
