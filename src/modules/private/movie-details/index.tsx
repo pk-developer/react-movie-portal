@@ -34,9 +34,9 @@ const MovieDetailsComponent = (props: MovieDetailsComponentProps) => {
         }
       );
       if (result.data.imdbID) {
-        debugger;
         const data = {
           ...result.data,
+          Ratings: result.data.Ratings[0].Value,
           image: "http://www.omdbapi.com/src/poster.jpg",
         };
         const keys = Object.keys(data);
@@ -54,7 +54,7 @@ const MovieDetailsComponent = (props: MovieDetailsComponentProps) => {
   return (
     <div style={{ padding: "25px" }}>
       <React.Fragment>{loading && <p>Loading....</p>}</React.Fragment>
-      <img style={{ marginBottom: "20px" }} src={movieDetails["image"]} />
+      {movieDetails && <img style={{ marginBottom: "20px" }} src={movieDetails["image"]} />}
       <div style={{ flexDirection: "row" }}>
         {!loading &&
           movieKeys.length > 0 &&
