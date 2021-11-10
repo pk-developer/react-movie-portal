@@ -1,0 +1,24 @@
+.login_wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://whmcsglobalservices.com/wp-content/uploads/2018/09/login-bg.jpg');
+    background-size: 100% auto ;
+    .login_box {
+        background-color: #fff;
+      box-shadow: 0 2px 8px #f0f1f2;  
+      padding: 25px;
+      border-radius: 15px;
+      .ant-form-item-explain-error {
+          color: red; 
+      }
+      .form-control {
+          margin-bottom: 15px;
+      }
+      .btn {
+          margin-top: 15px;
+      }
+    }
+}
