@@ -20,7 +20,7 @@ export class AuthService {
             const days = 30;
             date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
             cookies.clear();
-            cookies.setItem("access_token", res.data.access_token, {
+            cookies.setItem("access_token", '%$&^836303473452392464UGKJSDFLMFDIHD', {
               expires: date,
             });
             cookies.setItem("remember", loginData.rememberme, {

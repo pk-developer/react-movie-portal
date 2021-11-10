@@ -6,12 +6,15 @@ import { useNavigate } from "react-router-dom";
 import { User } from "core/model/interfaces";
 import Toast  from "core/services/toaster.services";
 import { INVALID_USER, LOGIN_SUCCESS, SERVER_ERROR } from "core/Strings";
+import { SCREENS } from "routes/route.label";
+import { useLogin } from "shared/hooks";
 interface LoginComponentProps {}
 
 const LoginComponent = (props: LoginComponentProps) => {
   const authService = new AuthService();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const {setLogin} = useLogin((state: any) => state);
   const onLogin = (values: any) => {
     setIsSubmitting(true);
     authService.loginAndSetToken(values).then(
@@ -19,7 +22,8 @@ const LoginComponent = (props: LoginComponentProps) => {
         const userNames: User[] = res.data.map((elem: User) => elem.username);
         if (userNames.includes(values.username)) {
           Toast.success(LOGIN_SUCCESS);
-          navigate("/movies");
+          navigate(SCREENS.MOVIES);
+          setLogin(true);
         } else {
           Toast.error(INVALID_USER);
         }

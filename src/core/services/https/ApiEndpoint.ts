@@ -4,6 +4,11 @@ export class ApiEndpoint {
       api: () => `oauth/users`,
     };
   
+    public static GET_MOVIES: APIDef = {
+      method: "GET",
+      api: () => `api/movies`,
+    };
+  
   
   }
   

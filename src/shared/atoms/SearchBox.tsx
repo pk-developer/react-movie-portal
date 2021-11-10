@@ -1,12 +1,25 @@
-import { React } from "shared/shared-import";
+import { useLogin } from "shared/hooks";
 
-interface SearchBoxProps {}
+interface SearchBoxProps {
+  onSearch: (searchTerm: string) => void;
+}
 
-const SearchBox = (props: SearchBoxProps) => {
+const SearchBox = ({ onSearch }: SearchBoxProps) => {
+  const { isLogin } = useLogin((state: any) => state);
   return (
-    <form className="d-flex">
-      <input className="form-control me-2" type="text" placeholder="Search" />
-      <button className="btn btn-primary" type="button">
+    <form className="d-flex" style={styles.searchFoxWrapper}>
+      <input
+        disabled={!isLogin}
+        className="form-control me-2"
+        type="text"
+        placeholder="Search"
+        onChange={(event) => onSearch(event.target.value)}
+      />
+      <button
+        disabled={!isLogin}
+        className="btn btn-primary"
+        type="button"
+      >
         Search
       </button>
     </form>
@@ -14,3 +27,9 @@ const SearchBox = (props: SearchBoxProps) => {
 };
 
 export default SearchBox;
+
+const styles = {
+  searchFoxWrapper: {
+    flex: 1,
+  },
+};
